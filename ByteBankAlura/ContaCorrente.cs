@@ -1,4 +1,6 @@
-﻿public class ContaCorrente {
+﻿using System;
+
+public class ContaCorrente {
     public string titular;
     public int agencia;
     public int numero;
@@ -33,4 +35,22 @@
         this.saldo += valor;
     }
 
+    /// <summary>
+    /// Método para realizar transferências entre contas, recebendo o valor a ser debitado e a conta que receberá o valor
+    /// </summary>
+    /// <param name="valor"></param>
+    /// <param name="conta"></param>
+    public void Transferir(double valor, ContaCorrente conta)
+    {
+        if (this.saldo < valor)
+        {
+            Console.WriteLine("Saldo insuficiente para realizar a transação");
+            return;
+        }
+        else
+        {
+            this.Sacar(valor);
+            conta.Depositar(valor);
+        }
+    }
 }
